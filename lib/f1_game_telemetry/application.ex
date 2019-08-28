@@ -10,6 +10,7 @@ defmodule F1GameTelemetry.Application do
     children = [
       # Starts a worker by calling: F1GameTelemetry.Worker.start_link(arg)
       # {F1GameTelemetry.Worker, arg}
+      {F1GameTelemetry.Listener, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

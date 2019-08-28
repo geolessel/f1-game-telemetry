@@ -1,18 +1,5 @@
 defmodule F1GameTelemetry do
-  @moduledoc """
-  Documentation for F1GameTelemetry.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> F1GameTelemetry.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def register(pid) do
+    F1GameTelemetry.Listener.register(pid)
   end
 end
