@@ -22,48 +22,44 @@ defmodule F1GameTelemetry.V2018.Lap do
   #                                      // 3 = finished, 4 = disqualified, 5 = not classified
   #                                      // 6 = retired
 
-  defstruct [
-    last_lap_time: 0.0,
-    current_lap_time: 0.0,
-    best_lap_time: 0.0,
-    sector_1_time: 0.0,
-    sector_2_time: 0.0,
-    lap_distance: 0.0,
-    total_distance: 0.0,
-    safety_car_delta: 0.0,
-    car_position: 0,
-    current_lap_number: 0,
-    pit_status: 0,
-    sector: 0,
-    current_lap_invalid: 0,
-    penalties: 0,
-    grid_position: 0,
-    driver_status: 0,
-    result_status: 0
-  ]
+  defstruct last_lap_time: 0.0,
+            current_lap_time: 0.0,
+            best_lap_time: 0.0,
+            sector_1_time: 0.0,
+            sector_2_time: 0.0,
+            lap_distance: 0.0,
+            total_distance: 0.0,
+            safety_car_delta: 0.0,
+            car_position: 0,
+            current_lap_number: 0,
+            pit_status: 0,
+            sector: 0,
+            current_lap_invalid: 0,
+            penalties: 0,
+            grid_position: 0,
+            driver_status: 0,
+            result_status: 0
 
-  def parse(
-    <<
-      last_lap_time       :: little-float-32,
-      current_lap_time    :: little-float-32,
-      best_lap_time       :: little-float-32,
-      sector_1_time       :: little-float-32,
-      sector_2_time       :: little-float-32,
-      lap_distance        :: little-float-32,
-      total_distance      :: little-float-32,
-      safety_car_delta    :: little-float-32,
-      car_position        :: little-unsigned-integer-8,
-      current_lap_number  :: little-unsigned-integer-8,
-      pit_status          :: little-unsigned-integer-8,
-      sector              :: little-unsigned-integer-8,
-      current_lap_invalid :: little-unsigned-integer-8,
-      penalties           :: little-unsigned-integer-8,
-      grid_position       :: little-unsigned-integer-8,
-      driver_status       :: little-unsigned-integer-8,
-      result_status       :: little-unsigned-integer-8,
-      rest                :: binary
-    >>
-  ) do
+  def parse(<<
+        last_lap_time::little-float-32,
+        current_lap_time::little-float-32,
+        best_lap_time::little-float-32,
+        sector_1_time::little-float-32,
+        sector_2_time::little-float-32,
+        lap_distance::little-float-32,
+        total_distance::little-float-32,
+        safety_car_delta::little-float-32,
+        car_position::little-unsigned-integer-8,
+        current_lap_number::little-unsigned-integer-8,
+        pit_status::little-unsigned-integer-8,
+        sector::little-unsigned-integer-8,
+        current_lap_invalid::little-unsigned-integer-8,
+        penalties::little-unsigned-integer-8,
+        grid_position::little-unsigned-integer-8,
+        driver_status::little-unsigned-integer-8,
+        result_status::little-unsigned-integer-8,
+        rest::binary
+      >>) do
     [
       %__MODULE__{
         last_lap_time: last_lap_time,
@@ -84,8 +80,7 @@ defmodule F1GameTelemetry.V2018.Lap do
         driver_status: driver_status,
         result_status: result_status
       }
-      |
-      parse(rest)
+      | parse(rest)
     ]
   end
 
